@@ -23,8 +23,8 @@
         <slot name="header" />
       </header>
 
-      <div class="mb-16 h-full" :style="{ height }">
-        <div class="main-content pt-4 px-2 h-full overflow-y-auto">
+      <div class="mb-16 h-full">
+        <div class="main-content pt-4 px-2 h-full overflow-y-auto" :style="{ height }">
           <router-view />
         </div>
       </div>
@@ -42,7 +42,7 @@
       <!--deaktop header-->
       <header
         v-if="slots.header"
-        ref="header"
+        ref="desktopHeader"
         class="hidden md:block
           sticky top-0 left-0
           px-2 py-4
@@ -195,29 +195,34 @@ export default {
     const isMobile = useMediaQuery('(max-width: 768px)')
 
     const header = ref(null)
+    const desktopHeader = ref(null)
     const navbar = ref(null)
     const additional = ref(null)
 
     const headerSpacing = ref(0)
+    const desktopHeaderSpacing = ref(0)
     const navbarSpacing = ref(0)
     const additionalSpacing = ref(0)
 
-    const navbarCallback = (v) => {
-      navbarSpacing.value = v
-        .reduce((acc, { target: { offsetHeight } = {} }) => acc + offsetHeight, 0)
+    const headerCallback = (v) => {
+      headerSpacing.value = v[0].target.offsetHeight
     }
 
-    const headerCallback = (v) => {
-      headerSpacing.value = v
-        .reduce((acc, { target: { offsetHeight } = {} }) => acc + offsetHeight, 0)
+    const desktopHeaderCallback = (v) => {
+      desktopHeaderSpacing.value = v[0].target.offsetHeight
+    }
+
+    const navbarCallback = (v) => {
+      navbarSpacing.value = v[0].target.offsetHeight
     }
 
     const additionalCallback = (v) => {
-      additionalSpacing.value = v
-        .reduce((acc, { target: { offsetHeight } = {} }) => acc + offsetHeight, 0)
+      additionalSpacing.value = v[0].target.offsetHeight
     }
 
     const headerObserver = new ResizeObserver(headerCallback)
+
+    const desktopHeaderObserver = new ResizeObserver(desktopHeaderCallback)
 
     const navbarObserver = new ResizeObserver(navbarCallback)
 
@@ -227,6 +232,8 @@ export default {
 
     const headerMutationObserver = new MutationObserver(headerCallback)
 
+    const desktopHeaderMutationObserver = new MutationObserver(desktopHeaderCallback)
+
     const navbarMutationObserver = new MutationObserver(navbarCallback)
 
     const additionalMutationObserver = new MutationObserver(additionalCallback)
@@ -235,6 +242,13 @@ export default {
       if (header.value) {
         headerObserver.observe(header.value)
         headerMutationObserver.observe(header.value, config)
+      }
+    })
+
+    watchEffect(() => {
+      if (desktopHeader.value) {
+        desktopHeaderObserver.observe(desktopHeader.value)
+        desktopHeaderMutationObserver.observe(desktopHeader.value, config)
       }
     })
 
@@ -254,9 +268,11 @@ export default {
 
     onBeforeUnmount(() => {
       headerObserver.disconnect()
+      desktopHeaderObserver.disconnect()
       navbarObserver.disconnect()
       additionalObserver.disconnect()
       headerMutationObserver.disconnect()
+      desktopHeaderMutationObserver.disconnect()
       navbarMutationObserver.disconnect()
       additionalMutationObserver.disconnect()
     })
@@ -270,10 +286,10 @@ export default {
     const navbarHeight = computed(() => {
       if (isMobile.value) return
 
-      return `calc(100% - ${headerSpacing.value + additionalSpacing.value}px)`
+      return `calc(100% - ${desktopHeaderSpacing.value + additionalSpacing.value}px)`
     })
 
-    return { slots, header, navbar, additional, height, navbarHeight }
+    return { slots, header, desktopHeader, navbar, additional, height, navbarHeight }
   },
 }
 </script>
