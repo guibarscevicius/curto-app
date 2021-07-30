@@ -187,8 +187,9 @@
 </template>
 
 <script>
+import { ref, computed, watch, watchEffect, onBeforeUnmount } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
-import { ref, computed, watchEffect, onBeforeUnmount } from 'vue'
+import { isDark } from '~/logic'
 
 export default {
   setup(_, { slots }) {
@@ -204,20 +205,20 @@ export default {
     const navbarSpacing = ref(0)
     const additionalSpacing = ref(0)
 
-    const headerCallback = (v) => {
-      headerSpacing.value = v[0].target.offsetHeight
+    const headerCallback = () => {
+      headerSpacing.value = header.value.offsetHeight
     }
 
-    const desktopHeaderCallback = (v) => {
-      desktopHeaderSpacing.value = v[0].target.offsetHeight
+    const desktopHeaderCallback = () => {
+      desktopHeaderSpacing.value = desktopHeader.value.offsetHeight
     }
 
-    const navbarCallback = (v) => {
-      navbarSpacing.value = v[0].target.offsetHeight
+    const navbarCallback = () => {
+      navbarSpacing.value = navbar.value.offsetHeight
     }
 
-    const additionalCallback = (v) => {
-      additionalSpacing.value = v[0].target.offsetHeight
+    const additionalCallback = () => {
+      additionalSpacing.value = additional.value.offsetHeight
     }
 
     const headerObserver = new ResizeObserver(headerCallback)
@@ -228,7 +229,7 @@ export default {
 
     const additionalObserver = new ResizeObserver(additionalCallback)
 
-    const config = { attributes: false, childList: true, subtree: true }
+    const config = { attributes: true, childList: true, subtree: true }
 
     const headerMutationObserver = new MutationObserver(headerCallback)
 
@@ -266,6 +267,13 @@ export default {
       }
     })
 
+    watch(isDark, () => {
+      headerCallback()
+      desktopHeaderCallback()
+      navbarCallback()
+      additionalCallback()
+    })
+
     onBeforeUnmount(() => {
       headerObserver.disconnect()
       desktopHeaderObserver.disconnect()
@@ -295,14 +303,12 @@ export default {
 </script>
 
 <style>
-.app-layout .main-content::-webkit-scrollbar,
-.app-layout .menu-content::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 8px;
   background-color: transparent;
 }
 
-.app-layout .main-content::-webkit-scrollbar-thumb,
-.app-layout .menu-content::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   border-radius: 8px;
   background-color: #A0A3A7;
 }
