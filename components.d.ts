@@ -4,6 +4,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     AppLayout: typeof import('./src/components/GComponents/AppLayout.vue')['default']
+    ArticleCard: typeof import('./src/components/Article/ArticleCard.vue')['default']
     CarbonCampsite: typeof import('virtual:vite-icons/carbon/campsite')['default']
     CarbonDicomOverlay: typeof import('virtual:vite-icons/carbon/dicom-overlay')['default']
     CarbonLanguage: typeof import('virtual:vite-icons/carbon/language')['default']
