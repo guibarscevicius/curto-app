@@ -2,7 +2,8 @@
   <app-layout>
     <template #header>
       <div class="flex flex-row justify-between">
-        <h1>CURTO</h1>
+        <g-logo />
+
         <div class="actions">
           <a class="icon-btn mx-2 .space-x-0.5" :title="t('button.toggle_langs')" @click="toggleLocales">
             <carbon-language />
@@ -16,9 +17,11 @@
       </div>
     </template>
 
+    <router-view />
+
     <template #additional>
       <div>
-        halawiiiiii
+        player should go here
       </div>
     </template>
   </app-layout>

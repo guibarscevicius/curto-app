@@ -25,7 +25,7 @@
 
       <div class="mb-16 h-full">
         <div class="main-content pt-4 px-2 h-full overflow-y-auto" :style="{ height }">
-          <router-view />
+          <slot />
         </div>
       </div>
     </div>
