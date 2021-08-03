@@ -85,9 +85,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'robots.txt', 'safari-pinned-tab.svg'],
       manifest: {
-        name: 'Vitesse',
-        short_name: 'Vitesse',
-        theme_color: '#ffffff',
+        name: 'CURTO',
+        short_name: 'CURTO',
+        theme_color: '#000000',
         icons: [
           {
             src: '/pwa-192x192.png',
