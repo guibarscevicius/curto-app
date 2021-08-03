@@ -9,6 +9,7 @@ export default defineConfig({
 
   plugins: [
     typography(),
+    require('windicss/plugin/line-clamp'),
   ],
   theme: {
     extend: {
