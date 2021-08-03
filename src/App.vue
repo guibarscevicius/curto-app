@@ -6,9 +6,9 @@ import { useMediaQuery, useDark } from '@vueuse/core'
 // you can use this to manipulate the document head in any components,
 // they will be rendered correctly in the html results with vite-ssg
 useHead({
-  title: 'Vitesse',
+  title: 'CURTO',
   meta: [
-    { name: 'description', content: 'Opinionated Vite Starter Template' },
+    { name: 'description', content: 'listen to the web' },
   ],
 })
 
