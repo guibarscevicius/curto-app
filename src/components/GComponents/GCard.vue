@@ -3,7 +3,6 @@
     class="
       overflow-hidden
       rounded-lg
-      border-box border-2
     "
     :class="active ? [`
       border-green-200 dark:border-green-800
