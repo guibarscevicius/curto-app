@@ -5,19 +5,13 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppLayout: typeof import('./src/components/GComponents/AppLayout.vue')['default']
     ArticleCard: typeof import('./src/components/Article/ArticleCard.vue')['default']
-    CarbonCampsite: typeof import('virtual:vite-icons/carbon/campsite')['default']
-    CarbonDicomOverlay: typeof import('virtual:vite-icons/carbon/dicom-overlay')['default']
     CarbonLanguage: typeof import('virtual:vite-icons/carbon/language')['default']
-    CarbonLogoGithub: typeof import('virtual:vite-icons/carbon/logo-github')['default']
     CarbonMoon: typeof import('virtual:vite-icons/carbon/moon')['default']
-    CarbonPedestrian: typeof import('virtual:vite-icons/carbon/pedestrian')['default']
     CarbonSun: typeof import('virtual:vite-icons/carbon/sun')['default']
-    CarbonWarning: typeof import('virtual:vite-icons/carbon/warning')['default']
-    Card: typeof import('./src/components/GComponents/Card.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     GCard: typeof import('./src/components/GComponents/GCard.vue')['default']
+    GImage: typeof import('./src/components/GComponents/GImage.vue')['default']
     GLogo: typeof import('./src/components/GComponents/GLogo.vue')['default']
-    Logo: typeof import('./src/components/GComponents/Logo.vue')['default']
     README: typeof import('./src/components/README.md')['default']
   }
 }
