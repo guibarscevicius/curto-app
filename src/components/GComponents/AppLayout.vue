@@ -1,24 +1,30 @@
 <template>
   <div
-    class="app-layout md:flex md:flex-row-reverse md:flex-nowrap
-        text-gray-900 dark:text-gray-200"
+    class="
+      app-layout md:flex md:flex-row-reverse md:flex-nowrap
+    text-gray-900 dark:text-gray-200
+    "
   >
     <!--main content-->
     <div
-      class="w-full md:w-auto h-screen md:flex-1
+      class="
+        w-full md:w-auto h-screen md:flex-1
         overflow-hidden
         md:ml-70
-        bg-white dark:bg-gray-900"
+        bg-white dark:bg-gray-900
+      "
     >
       <!--mobile header -->
       <header
         v-if="slots.header"
         ref="header"
-        class="md:hidden
+        class="
+          md:hidden
           sticky top-0 left-0
           px-2 py-4
           bg-gray-100 dark:bg-gray-800
-          border-b-2 border-gray-300 dark:border-gray-700"
+          border-b-2 border-gray-300 dark:border-gray-700
+        "
       >
         <slot name="header" />
       </header>
@@ -57,7 +63,7 @@
         class="md:overflow-y-auto"
         :style="{ height: navbarHeight }"
       >
-        <div class="px-2 md:pt-4 h-16 md:h-screen">
+        <div class="px-2 md:pt-4 h-16">
           <ul class="list-reset flex flex-row md:flex-col text-center md:text-left">
             <li class="mr-3 flex-1">
               <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">

@@ -2,7 +2,17 @@
   <app-layout>
     <template #header>
       <div class="flex flex-row justify-between">
-        <g-logo />
+        <div class="flex flex-row flex-nowrap items-center">
+          <g-logo class="font-black dark:font-white h-8" />
+          <div class="pl-2 leading-none">
+            <h1 class="font-semibold">
+              CURTO
+            </h1>
+            <h3 class="text-xs">
+              {{ t('branding.slogan') }}
+            </h3>
+          </div>
+        </div>
 
         <div class="actions">
           <a class="icon-btn mx-2 .space-x-0.5" :title="t('button.toggle_langs')" @click="toggleLocales">
