@@ -2,32 +2,32 @@
   <g-card
     class="
       flex flex-row flex-nowrap
-      p-2
-      gap-2
-      text-xs
+      text-xs md:text-sm
     "
   >
     <!--image-->
     <g-image
-      class="w-18 h-18"
+      class="w-26 h-26 md:h-32 md:w-32"
       :class="active
         ? ['text-green-100 dark:text-green-900']
         : ['text-gray-300 dark:text-gray-700']
       "
       :src="image || logo"
       :alt="alt || title"
-      :secondary-image="image && logo"
-      :secondary-alt="image && brand"
     />
 
     <!--content-->
-    <div>
-      <h3 class="font-semibold line-clamp-2 mb-0.5">
-        {{ title }}
-      </h3>
-      <p class="line-clamp-2">
-        {{ description }}
-      </p>
+    <div class="p-2 flex flex-col flex-nowrap justify-between">
+      <div>
+        <h3 class="font-semibold line-clamp-2 mb-0.5">
+          {{ title }}
+        </h3>
+        <p class="line-clamp-2">
+          {{ description }}
+        </p>
+      </div>
+
+      <span class="block text-xs font-light text-right">The Guardian - 12 jul 18h55</span>
     </div>
 
     <!--actions-->
