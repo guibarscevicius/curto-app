@@ -85,9 +85,10 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'robots.txt', 'safari-pinned-tab.svg'],
       manifest: {
+        background_color: '#000',
         name: 'CURTO',
         short_name: 'CURTO',
-        theme_color: '#000000',
+        theme_color: '#000',
         icons: [
           {
             src: '/pwa-192x192.png',
