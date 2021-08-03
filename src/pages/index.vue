@@ -5,10 +5,10 @@
       :key="i"
       :image="(i % 3) ? `https://picsum.photos/${Math.floor(Math.random() * 4) + 1}00/${Math.floor(Math.random() * 4) + 1}00` : undefined"
       logo="https://i.pinimg.com/originals/a0/db/2f/a0db2ff946b49086a105a2722db66d22.png"
-      brand="batatas"
+      brand="The Guardian"
       :title="(i % 3)
-        ? 'Exemplo de cardinho de artigo, esse artigo tem ima imagem, e ela aparece aqui. Caso contrário apareceria o logo da fonte'
-        : 'Exemplo de cardinho sem a imagem. Nesse caso, o logo da fonte (The Guardian, no caso) aparece'
+        ? 'Exemplo de cardinho de artigo, esse artigo tem ima imagem, e ela aparece aqui.'
+        : 'Exemplo de cardinho sem imagem. Nesse caso, o logo da fonte (The Guardian) aparece;'
       "
       description="Seguindo a ideia de que o cardinho tá bão mas tá ruim, podemos concluir q sempre tem como piorar. Ou melhorar"
     />
