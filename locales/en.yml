@@ -13,3 +13,7 @@ intro:
 not-found: Not found
 branding:
   slogan: listen to the web
+menu:
+  playlist: Playlist
+  articles: Home
+  about: About

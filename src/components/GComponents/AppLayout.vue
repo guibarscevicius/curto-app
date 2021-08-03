@@ -2,7 +2,7 @@
   <div
     class="
       app-layout md:flex md:flex-row-reverse md:flex-nowrap
-    text-gray-900 dark:text-gray-200
+    text-gray-900 dark:text-gray-200 transition duration-200 ease-in-out
     "
   >
     <!--main content-->
@@ -63,28 +63,37 @@
         class="md:overflow-y-auto"
         :style="{ height: navbarHeight }"
       >
-        <div class="px-2 md:pt-4 h-16">
+        <div class="px-2" :class="desktopHeader ? ['md:pt-2'] : ['md:pt-4']">
           <ul class="list-reset flex flex-row md:flex-col text-center md:text-left">
-            <li class="mr-3 flex-1">
-              <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
-                <i class="fas fa-link pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Link</span>
-              </a>
-            </li>
-            <li class="mr-3 flex-1">
-              <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
-                <i class="fas fa-link pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Link</span>
-              </a>
-            </li>
-            <li class="mr-3 flex-1">
-              <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-pink-600">
-                <i class="fas fa-link pr-0 md:pr-3 text-pink-500"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-white md:font-bold block md:inline-block">Active Link</span>
-              </a>
-            </li>
-            <li class="mr-3 flex-1">
-              <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
-                <i class="fas fa-link pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Link</span>
-              </a>
-            </li>
+            <template v-for="item in menuItems" :key="item.name">
+              <li
+                v-if="isMobile || !item.mobileOnly"
+                class="mr-3 flex-1"
+              >
+                <a
+                  href="#"
+                  class="
+                    no-underline
+                    block md:flex md:flex-row md:flex-nowrap md:content-center
+                    py-1.5 md:py-3
+                    hover:text-gray-700 dark:hover:text-gray-300
+                    transition duration-200 ease-in-out
+                  "
+                  :class="item.active
+                    ? ['text-gray-800 dark:text-gray-200']
+                    : ['text-gray-400 dark:text-gray-500']
+                  "
+                >
+                  <component :is="item.active ? item.activeIcon || item.icon : item.icon" class="inline md:mr-3" :height="isMobile ? '1.8em' : '2em'" :width="isMobile ? '1.8em' : '2em'" />
+                  <span
+                    class="
+                      text-xs md:text-base
+                      block md:inline-flex md:items-center
+                    "
+                  >{{ t('menu.' + item.name) }}</span>
+                </a>
+              </li>
+            </template>
           </ul>
         </div>
       </div>
@@ -107,7 +116,30 @@
 <script>
 import { ref, computed, watch, watchEffect, onBeforeUnmount } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
+import PlaylistIcon from 'virtual:vite-icons/carbon/media-library'
+import ArticlesIcon from 'virtual:vite-icons/ci/home-outline'
+import ArticlesActiveIcon from 'virtual:vite-icons/ci/home-fill'
+import AboutIcon from 'virtual:vite-icons/ant-design/info-circle-outlined'
 import { isDark } from '~/logic'
+
+const menuItems = [
+  {
+    name: 'playlist',
+    icon: PlaylistIcon,
+    mobileOnly: true,
+  },
+  {
+    name: 'articles',
+    icon: ArticlesIcon,
+    activeIcon: ArticlesActiveIcon,
+    active: true,
+  },
+  {
+    name: 'about',
+    icon: AboutIcon,
+  },
+]
 
 export default {
   setup(_, { slots }) {
@@ -215,7 +247,9 @@ export default {
       return `calc(100% - ${desktopHeaderSpacing.value + additionalSpacing.value}px)`
     })
 
-    return { slots, header, desktopHeader, navbar, additional, height, navbarHeight }
+    const { t } = useI18n()
+
+    return { slots, header, desktopHeader, navbar, additional, height, navbarHeight, menuItems, t, isMobile }
   },
 }
 </script>
