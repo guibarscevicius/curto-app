@@ -88,6 +88,7 @@ export default defineConfig({
         background_color: '#000',
         name: 'CURTO',
         short_name: 'CURTO',
+        description: 'listen to the web',
         theme_color: '#000',
         icons: [
           {
