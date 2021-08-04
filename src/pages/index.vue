@@ -17,10 +17,10 @@
 
 <style lang="scss">
 .article-list {
-  grid-template-columns: repeat(auto-fill, minmax(20rem,1fr));
+  grid-template-columns: repeat(auto-fill, minmax(28rem,1fr));
 
   @media screen and (min-width: 769px) {
-    grid-template-columns: repeat(auto-fill, minmax(28rem,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(32rem,1fr));
   }
 }
 </style>
