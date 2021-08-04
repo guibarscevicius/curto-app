@@ -68,23 +68,34 @@
             <template v-for="item in menuItems" :key="item.name">
               <li
                 v-if="isMobile || !item.mobileOnly"
-                class="mr-3 flex-1"
+                class="flex-1"
               >
                 <router-link
                   :to="{ name: item.routeName || item.name }"
                   class="
                     no-underline
                     block md:flex md:flex-row md:flex-nowrap md:content-center
-                    py-1.5 md:py-3
+                    py-1.5 md:py-3 md:px-3
                     hover:text-gray-700 dark:hover:text-gray-300
                     transition duration-200 ease-in-out
+                    rounded-lg
                   "
-                  :class="(item.routeName || item.name) === route.name
-                    ? ['text-gray-800 dark:text-gray-200']
-                    : ['text-gray-400 dark:text-gray-500']
+                  :class="[
+                    ...(item.routeName || item.name) === route.name
+                      ? ['text-gray-800 dark:text-gray-200']
+                      : ['text-gray-400 dark:text-gray-500'],
+                    ...(item.routeName || item.name) === route.name ? [
+                      'md:bg-gray-300 md:dark:bg-gray-700'
+                    ] : []
+                  ]
                   "
                 >
-                  <component :is="item.active ? item.activeIcon || item.icon : item.icon" class="inline md:mr-3" :height="isMobile ? '1.8em' : '2em'" :width="isMobile ? '1.8em' : '2em'" />
+                  <component
+                    :is="((item.routeName || item.name) === route.name && item.activeIcon) || item.icon"
+                    class="inline md:mr-3"
+                    :height="isMobile ? '1.8em' : '2em'"
+                    :width="isMobile ? '1.8em' : '2em'"
+                  />
                   <span
                     class="
                       text-xs md:text-base
