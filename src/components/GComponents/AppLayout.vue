@@ -70,8 +70,8 @@
                 v-if="isMobile || !item.mobileOnly"
                 class="mr-3 flex-1"
               >
-                <a
-                  href="#"
+                <router-link
+                  :to="{ name: item.routeName || item.name }"
                   class="
                     no-underline
                     block md:flex md:flex-row md:flex-nowrap md:content-center
@@ -79,7 +79,7 @@
                     hover:text-gray-700 dark:hover:text-gray-300
                     transition duration-200 ease-in-out
                   "
-                  :class="item.active
+                  :class="(item.routeName || item.name) === route.name
                     ? ['text-gray-800 dark:text-gray-200']
                     : ['text-gray-400 dark:text-gray-500']
                   "
@@ -91,7 +91,7 @@
                       block md:inline-flex md:items-center
                     "
                   >{{ t('menu.' + item.name) }}</span>
-                </a>
+                </router-link>
               </li>
             </template>
           </ul>
@@ -115,13 +115,13 @@
 
 <script>
 import { ref, computed, watch, watchEffect, onBeforeUnmount } from 'vue'
-import { useMediaQuery } from '@vueuse/core'
+import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import PlaylistIcon from 'virtual:vite-icons/carbon/media-library'
 import ArticlesIcon from 'virtual:vite-icons/ci/home-outline'
 import ArticlesActiveIcon from 'virtual:vite-icons/ci/home-fill'
 import AboutIcon from 'virtual:vite-icons/ant-design/info-circle-outlined'
-import { isDark } from '~/logic'
+import { isDark, isMobile } from '~/logic'
 
 const menuItems = [
   {
@@ -131,9 +131,9 @@ const menuItems = [
   },
   {
     name: 'articles',
+    routeName: 'index',
     icon: ArticlesIcon,
     activeIcon: ArticlesActiveIcon,
-    active: true,
   },
   {
     name: 'about',
@@ -143,8 +143,6 @@ const menuItems = [
 
 export default {
   setup(_, { slots }) {
-    const isMobile = useMediaQuery('(max-width: 768px)')
-
     const header = ref(null)
     const desktopHeader = ref(null)
     const navbar = ref(null)
@@ -248,8 +246,9 @@ export default {
     })
 
     const { t } = useI18n()
+    const route = useRoute()
 
-    return { slots, header, desktopHeader, navbar, additional, height, navbarHeight, menuItems, t, isMobile }
+    return { slots, header, desktopHeader, navbar, additional, height, navbarHeight, menuItems, t, isMobile, route }
   },
 }
 </script>
