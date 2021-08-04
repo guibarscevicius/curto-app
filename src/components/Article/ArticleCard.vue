@@ -17,7 +17,7 @@
     />
 
     <!--content-->
-    <div class="p-2 flex flex-col flex-nowrap justify-between">
+    <div class="p-2 flex flex-col flex-nowrap justify-between flex-grow">
       <div>
         <h3 class="font-semibold line-clamp-2 mb-0.5">
           {{ title }}
