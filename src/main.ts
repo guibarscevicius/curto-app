@@ -3,7 +3,6 @@ import 'vue-global-api'
 import { ViteSSG } from 'vite-ssg'
 import generatedRoutes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
-import { createWebHistory } from 'vue-router'
 import App from './App.vue'
 import { isMobile } from '~/logic'
 
@@ -24,7 +23,6 @@ export const createApp = ViteSSG(
   App,
   {
     routes,
-    history: createWebHistory(),
     scrollBehavior() { return { top: 0, behavior: 'smooth' } },
   },
   (ctx) => {
