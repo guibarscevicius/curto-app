@@ -81,17 +81,17 @@
                     rounded-lg
                   "
                   :class="[
-                    ...(item.routeName || item.name) === route.name
+                    ...isActive(item)
                       ? ['text-gray-800 dark:text-gray-200']
                       : ['text-gray-400 dark:text-gray-500'],
-                    ...(item.routeName || item.name) === route.name ? [
+                    ...isActive(item) ? [
                       'md:bg-gray-300 md:dark:bg-gray-700'
                     ] : []
                   ]
                   "
                 >
                   <component
-                    :is="((item.routeName || item.name) === route.name && item.activeIcon) || item.icon"
+                    :is="(isActive(item) && item.activeIcon) || item.icon"
                     class="inline md:mr-3"
                     :height="isMobile ? '1.8em' : '2em'"
                     :width="isMobile ? '1.8em' : '2em'"
@@ -259,7 +259,22 @@ export default {
     const { t } = useI18n()
     const route = useRoute()
 
-    return { slots, header, desktopHeader, navbar, additional, height, navbarHeight, menuItems, t, isMobile, route }
+    const isActive = ({ name, routeName }) =>
+      (routeName || name) === route.name
+
+    return {
+      slots,
+      header,
+      desktopHeader,
+      navbar,
+      additional,
+      height,
+      navbarHeight,
+      menuItems,
+      t,
+      isMobile,
+      isActive,
+    }
   },
 }
 </script>
