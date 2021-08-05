@@ -1,8 +1,9 @@
 <template>
   <div
     class="
-      app-layout md:flex md:flex-row-reverse md:flex-nowrap
-    text-gray-900 dark:text-gray-200 transition duration-200 ease-in-out
+      md:flex md:flex-row-reverse md:flex-nowrap
+    text-gray-900 dark:text-gray-200
+    transition duration-200 ease-in-out
     "
   >
     <!--main content-->
@@ -23,18 +24,25 @@
           sticky top-0 left-0
           px-2 py-4
           bg-gray-100 dark:bg-gray-800
-          border-b-2 border-gray-300 dark:border-gray-700
+          border-b-2
+          border-gray-300 dark:border-gray-700
         "
       >
         <slot name="header" />
       </header>
 
       <div class="mb-16 h-full">
-        <div class="main-content pt-4 px-2 h-full overflow-y-auto" :style="{ height }">
+        <div
+          class="pt-4 px-2 h-full overflow-y-auto"
+          :style="{ height }"
+        >
           <div class="relative w-full h-full">
             <router-view v-slot="{ Component }">
               <transition name="fade">
-                <component :is="Component" class="absolute top-0 left-0 pb-4 w-full" />
+                <component
+                  :is="Component"
+                  class="absolute top-0 left-0 pb-4 w-full"
+                />
               </transition>
             </router-view>
           </div>
@@ -49,7 +57,8 @@
         flex flex-col-reverse flex-nowrap md:block
         fixed md:absolute bottom-0 left-0 md:top-0 md:bottom-auto
         bg-gray-100 dark:bg-gray-800
-        border-t-2 md:border-r-2 md:border-t-0 border-gray-300 dark:border-gray-700"
+        border-t-2 md:border-r-2 md:border-t-0
+        border-gray-300 dark:border-gray-700"
     >
       <!--deaktop header-->
       <header
@@ -69,49 +78,14 @@
         class="md:overflow-y-auto"
         :style="{ height: navbarHeight }"
       >
-        <div class="px-2" :class="desktopHeader ? ['md:pt-2'] : ['md:pt-4']">
-          <ul class="list-reset flex flex-row md:flex-col text-center md:text-left">
-            <template v-for="item in menuItems" :key="item.name">
-              <li
-                v-if="isMobile || !item.mobileOnly"
-                class="flex-1"
-              >
-                <router-link
-                  :to="{ name: item.routeName || item.name }"
-                  class="
-                    no-underline
-                    block md:flex md:flex-row md:flex-nowrap md:content-center
-                    py-1.5 md:py-3 md:px-3
-                    hover:text-gray-700 dark:hover:text-gray-300
-                    transition duration-200 ease-in-out
-                    rounded-lg
-                  "
-                  :class="[
-                    ...isActive(item)
-                      ? ['text-gray-800 dark:text-gray-200']
-                      : ['text-gray-400 dark:text-gray-500'],
-                    ...isActive(item) ? [
-                      'md:bg-gray-300 md:dark:bg-gray-700'
-                    ] : []
-                  ]
-                  "
-                >
-                  <component
-                    :is="(isActive(item) && item.activeIcon) || item.icon"
-                    class="inline md:mr-3"
-                    :height="isMobile ? '1.8em' : '2em'"
-                    :width="isMobile ? '1.8em' : '2em'"
-                  />
-                  <span
-                    class="
-                      text-xs md:text-base
-                      block md:inline-flex md:items-center
-                    "
-                  >{{ t('menu.' + item.name) }}</span>
-                </router-link>
-              </li>
-            </template>
-          </ul>
+        <div
+          v-if="slots.menu"
+          class="px-2"
+          :class="desktopHeader
+            ? ['md:pt-2']
+            : ['md:pt-4']"
+        >
+          <slot name="menu" />
         </div>
       </div>
 
@@ -132,31 +106,8 @@
 
 <script>
 import { ref, computed, watch, watchEffect, onBeforeUnmount } from 'vue'
-import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import PlaylistIcon from 'virtual:vite-icons/carbon/media-library'
-import ArticlesIcon from 'virtual:vite-icons/ci/home-outline'
-import ArticlesActiveIcon from 'virtual:vite-icons/ci/home-fill'
-import AboutIcon from 'virtual:vite-icons/ant-design/info-circle-outlined'
 import { isDark, isMobile } from '~/logic'
-
-const menuItems = [
-  {
-    name: 'playlist',
-    icon: PlaylistIcon,
-    mobileOnly: true,
-  },
-  {
-    name: 'articles',
-    routeName: 'index',
-    icon: ArticlesIcon,
-    activeIcon: ArticlesActiveIcon,
-  },
-  {
-    name: 'about',
-    icon: AboutIcon,
-  },
-]
 
 export default {
   setup(_, { slots }) {
@@ -263,10 +214,6 @@ export default {
     })
 
     const { t } = useI18n()
-    const route = useRoute()
-
-    const isActive = ({ name, routeName }) =>
-      (routeName || name) === route.name
 
     return {
       slots,
@@ -276,10 +223,8 @@ export default {
       additional,
       height,
       navbarHeight,
-      menuItems,
       t,
       isMobile,
-      isActive,
     }
   },
 }

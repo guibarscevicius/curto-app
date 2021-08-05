@@ -14,6 +14,7 @@ declare module 'vue' {
     GCard: typeof import('./src/components/GComponents/GCard.vue')['default']
     GImage: typeof import('./src/components/GComponents/GImage.vue')['default']
     GLogo: typeof import('./src/components/GComponents/GLogo.vue')['default']
+    GPlayer: typeof import('./src/components/GComponents/GPlayer.vue')['default']
     README: typeof import('./src/components/README.md')['default']
   }
 }
