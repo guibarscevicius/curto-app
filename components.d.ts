@@ -11,6 +11,7 @@ declare module 'vue' {
     CarbonSun: typeof import('virtual:vite-icons/carbon/sun')['default']
     CarbonWarning: typeof import('virtual:vite-icons/carbon/warning')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
+    GBrandedLogo: typeof import('./src/components/GComponents/GBrandedLogo.vue')['default']
     GCard: typeof import('./src/components/GComponents/GCard.vue')['default']
     GImage: typeof import('./src/components/GComponents/GImage.vue')['default']
     GLogo: typeof import('./src/components/GComponents/GLogo.vue')['default']
