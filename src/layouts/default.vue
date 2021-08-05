@@ -2,13 +2,13 @@
   <app-layout>
     <template #header>
       <div class="flex flex-row justify-between">
-        <div class="flex flex-row flex-nowrap items-center">
-          <g-logo class="font-black dark:font-white h-8" />
+        <div class="flex flex-row flex-nowrap items-center font-black dark:font-white">
+          <g-logo class="h-8" />
           <div class="pl-2 leading-none">
             <h1 class="font-semibold">
               CURTO
             </h1>
-            <h3 class="text-xs">
+            <h3 class="text-xs font-normal">
               {{ t('branding.slogan') }}
             </h3>
           </div>
