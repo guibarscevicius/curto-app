@@ -31,7 +31,13 @@
 
       <div class="mb-16 h-full">
         <div class="main-content pt-4 px-2 h-full overflow-y-auto" :style="{ height }">
-          <slot />
+          <div class="relative">
+            <router-view v-slot="{ Component }">
+              <transition name="fade">
+                <component :is="Component" class="absolute top-0 left-0" />
+              </transition>
+            </router-view>
+          </div>
         </div>
       </div>
     </div>
