@@ -1,6 +1,6 @@
 <template>
   <div class="article-list grid gap-2">
-    <article-card
+    <playlist-card
       v-for="i in 20"
       :key="i"
       :image="(i % 3) ? `https://picsum.photos/${Math.floor(Math.random() * 4) + 1}00/${Math.floor(Math.random() * 4) + 1}00` : undefined"

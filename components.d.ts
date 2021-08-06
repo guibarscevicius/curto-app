@@ -21,6 +21,7 @@ declare module 'vue' {
     LayoutHeader: typeof import('./src/components/Layout/LayoutHeader.vue')['default']
     LayoutMenu: typeof import('./src/components/Layout/LayoutMenu.vue')['default']
     Menu: typeof import('./src/components/Layout/Menu.vue')['default']
+    PlaylistCard: typeof import('./src/components/Playlist/PlaylistCard.vue')['default']
     PlaylistList: typeof import('./src/components/Playlist/PlaylistList.vue')['default']
     README: typeof import('./src/components/README.md')['default']
   }

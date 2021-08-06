@@ -83,7 +83,7 @@
       >
         <div
           v-if="slots.menu"
-          class="px-2"
+          class="px-2 pb-2"
           :class="desktopHeader
             ? ['md:pt-2']
             : ['md:pt-4']"
