@@ -4,6 +4,7 @@
       flex flex-col flex-nowrap justify-center items-center
       w-full pt-4 px-4 gap-2
       text-center
+      text-gray-600 dark:text-gray-300
     "
   >
     <component :is="component" class="w-28 h-28 mb-4" />
