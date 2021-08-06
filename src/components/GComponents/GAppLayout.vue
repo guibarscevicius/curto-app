@@ -95,12 +95,11 @@
       <!--desktop content-->
       <div
         v-if="!isMobile && slots.sidebarContent"
-        class="md:overflow-y-auto"
+        class="md:overflow-x-hidden md:overflow-y-auto"
         :style="{ height: navbarContentHeight }"
       >
         <div
-          v-if="slots.menu"
-          class="px-2"
+          class="px-2 pb-2"
           :class="desktopHeader || slots.menu
             ? ['md:pt-2']
             : ['md:pt-4']"
