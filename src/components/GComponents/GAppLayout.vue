@@ -75,8 +75,11 @@
 
       <!--menu items-->
       <div
-        class="md:overflow-y-auto"
-        :style="{ height: navbarHeight }"
+        ref="desktopMenu"
+        :class="[...(slots.sidebarContent
+          ? ['md:border-b-2 md:border-gray-300 md:dark:border-gray-700']
+          : []
+        )]"
       >
         <div
           v-if="slots.menu"
@@ -86,6 +89,23 @@
             : ['md:pt-4']"
         >
           <slot name="menu" />
+        </div>
+      </div>
+
+      <!--desktop content-->
+      <div
+        v-if="!isMobile && slots.sidebarContent"
+        class="md:overflow-y-auto"
+        :style="{ height: navbarContentHeight }"
+      >
+        <div
+          v-if="slots.menu"
+          class="px-2"
+          :class="desktopHeader || slots.menu
+            ? ['md:pt-2']
+            : ['md:pt-4']"
+        >
+          <slot name="sidebarContent" />
         </div>
       </div>
 
@@ -113,11 +133,13 @@ export default {
   setup(_, { slots }) {
     const header = ref(null)
     const desktopHeader = ref(null)
+    const desktopMenu = ref(null)
     const navbar = ref(null)
     const additional = ref(null)
 
     const headerSpacing = ref(0)
     const desktopHeaderSpacing = ref(0)
+    const desktopMenuSpacing = ref(0)
     const navbarSpacing = ref(0)
     const additionalSpacing = ref(0)
 
@@ -127,6 +149,10 @@ export default {
 
     const desktopHeaderCallback = () => {
       desktopHeaderSpacing.value = desktopHeader.value.offsetHeight
+    }
+
+    const desktopMenuCallback = () => {
+      desktopMenuSpacing.value = desktopMenu.value.offsetHeight
     }
 
     const navbarCallback = () => {
@@ -141,6 +167,8 @@ export default {
 
     const desktopHeaderObserver = new ResizeObserver(desktopHeaderCallback)
 
+    const desktopMenuObserver = new ResizeObserver(desktopMenuCallback)
+
     const navbarObserver = new ResizeObserver(navbarCallback)
 
     const additionalObserver = new ResizeObserver(additionalCallback)
@@ -150,6 +178,8 @@ export default {
     const headerMutationObserver = new MutationObserver(headerCallback)
 
     const desktopHeaderMutationObserver = new MutationObserver(desktopHeaderCallback)
+
+    const desktopMenuMutationObserver = new MutationObserver(desktopMenuCallback)
 
     const navbarMutationObserver = new MutationObserver(navbarCallback)
 
@@ -170,6 +200,13 @@ export default {
     })
 
     watchEffect(() => {
+      if (desktopMenu.value) {
+        desktopMenuObserver.observe(desktopMenu.value)
+        desktopMenuMutationObserver.observe(desktopMenu.value, config)
+      }
+    })
+
+    watchEffect(() => {
       if (navbar.value) {
         navbarObserver.observe(navbar.value)
         navbarMutationObserver.observe(navbar.value, config)
@@ -186,6 +223,7 @@ export default {
     watch(isDark, () => {
       headerCallback()
       desktopHeaderCallback()
+      desktopMenuCallback()
       navbarCallback()
       additionalCallback()
     })
@@ -193,10 +231,12 @@ export default {
     onBeforeUnmount(() => {
       headerObserver.disconnect()
       desktopHeaderObserver.disconnect()
+      desktopMenuObserver.disconnect()
       navbarObserver.disconnect()
       additionalObserver.disconnect()
       headerMutationObserver.disconnect()
       desktopHeaderMutationObserver.disconnect()
+      desktopMenuMutationObserver.disconnect()
       navbarMutationObserver.disconnect()
       additionalMutationObserver.disconnect()
     })
@@ -207,10 +247,14 @@ export default {
       return `calc(100% - ${headerSpacing.value + navbarSpacing.value}px)`
     })
 
-    const navbarHeight = computed(() => {
+    const navbarContentHeight = computed(() => {
       if (isMobile.value) return
 
-      return `calc(100% - ${desktopHeaderSpacing.value + additionalSpacing.value}px)`
+      return `calc(100% - ${
+        desktopHeaderSpacing.value
+        + desktopMenuSpacing.value
+        + additionalSpacing.value
+      }px)`
     })
 
     const { t } = useI18n()
@@ -219,10 +263,11 @@ export default {
       slots,
       header,
       desktopHeader,
+      desktopMenu,
       navbar,
       additional,
       height,
-      navbarHeight,
+      navbarContentHeight,
       t,
       isMobile,
     }

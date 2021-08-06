@@ -1,7 +1,5 @@
 <template>
-  <div>
-    playlist
-  </div>
+  <playlist-list />
 </template>
 
 <route>

@@ -10,6 +10,10 @@
       <layout-menu :items="menuItems" />
     </template>
 
+    <template #sidebarContent>
+      <playlist-list />
+    </template>
+
     <template #additional>
       <g-player />
     </template>

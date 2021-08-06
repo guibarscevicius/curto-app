@@ -5,6 +5,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppLayout: typeof import('./src/components/GComponents/AppLayout.vue')['default']
     ArticleCard: typeof import('./src/components/Article/ArticleCard.vue')['default']
+    ArticleList: typeof import('./src/components/Article/ArticleList.vue')['default']
     CarbonDicomOverlay: typeof import('virtual:vite-icons/carbon/dicom-overlay')['default']
     CarbonLanguage: typeof import('virtual:vite-icons/carbon/language')['default']
     CarbonMoon: typeof import('virtual:vite-icons/carbon/moon')['default']
@@ -20,6 +21,7 @@ declare module 'vue' {
     LayoutHeader: typeof import('./src/components/Layout/LayoutHeader.vue')['default']
     LayoutMenu: typeof import('./src/components/Layout/LayoutMenu.vue')['default']
     Menu: typeof import('./src/components/Layout/Menu.vue')['default']
+    PlaylistList: typeof import('./src/components/Playlist/PlaylistList.vue')['default']
     README: typeof import('./src/components/README.md')['default']
   }
 }
