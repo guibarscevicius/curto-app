@@ -1,6 +1,14 @@
 <template>
-  <div class="article-list grid gap-2">
-    <g-empty v-if="!items.length" />
+  <div class="flex flex-col w-full">
+    <g-empty v-if="!items.length">
+      <p class="text-xl font-semibold">
+        Ouch...
+      </p>
+      <p>
+        Você ainda não adicionou itens à sua lista!<br />
+        Clique em algum dos artigos para continuar
+      </p>
+    </g-empty>
 
     <template v-else>
       <playlist-card

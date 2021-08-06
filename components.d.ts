@@ -15,6 +15,7 @@ declare module 'vue' {
     GAppLayout: typeof import('./src/components/GComponents/GAppLayout.vue')['default']
     GBrandedLogo: typeof import('./src/components/GComponents/GBrandedLogo.vue')['default']
     GCard: typeof import('./src/components/GComponents/GCard.vue')['default']
+    GCharacter: typeof import('./src/components/GComponents/GCharacter.vue')['default']
     GEmpty: typeof import('./src/components/GComponents/GEmpty.vue')['default']
     GImage: typeof import('./src/components/GComponents/GImage.vue')['default']
     GLogo: typeof import('./src/components/GComponents/GLogo.vue')['default']
