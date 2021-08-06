@@ -2,7 +2,7 @@
   <div
     class="
       flex flex-col flex-nowrap justify-center items-center
-      w-full py-4 px-4 gap-2
+      w-full py-4 px-4 gap-2 h-full md:h-auto
       text-center
       text-gray-500 dark:text-gray-400
       border-1 rounded-lg border-dashed
