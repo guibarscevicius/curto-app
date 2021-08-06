@@ -2,12 +2,18 @@
   <div
     class="
       flex flex-col flex-nowrap justify-center items-center
-      w-full pt-4 px-4 gap-2
+      w-full py-4 px-4 gap-2
       text-center
-      text-gray-600 dark:text-gray-300
+      text-gray-500 dark:text-gray-400
+      border-1 rounded-lg border-dashed
+      border-gray-400 dark:border-gray-600
     "
   >
-    <component :is="component" class="w-30 h-30 mb-4" />
+    <component
+      :is="component"
+      class="w-30 h-30"
+      :class="slots.default ? 'mb-4' : ''"
+    />
     <slot />
   </div>
 </template>
@@ -50,12 +56,12 @@ const characters = [
 ]
 
 export default {
-  setup() {
+  setup(_, { slots }) {
     const component = characters[
       Math.floor(Math.random() * characters.length)
     ]
 
-    return { component }
+    return { component, slots }
   },
 }
 </script>
