@@ -12,7 +12,7 @@
     <component
       :is="component"
       class="w-30 h-30"
-      :class="slots.default ? 'mb-4' : ''"
+      :class="slots.default ? 'mb-2' : ''"
     />
     <slot />
   </div>
