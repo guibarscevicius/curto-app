@@ -7,7 +7,7 @@
       text-gray-600 dark:text-gray-300
     "
   >
-    <component :is="component" class="w-28 h-28 mb-4" />
+    <component :is="component" class="w-30 h-30 mb-4" />
     <slot />
   </div>
 </template>
