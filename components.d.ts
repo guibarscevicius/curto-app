@@ -3,29 +3,22 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AppLayout: typeof import('./src/components/GComponents/AppLayout.vue')['default']
     ArticleCard: typeof import('./src/components/Article/ArticleCard.vue')['default']
     ArticleList: typeof import('./src/components/Article/ArticleList.vue')['default']
-    CarbonDicomOverlay: typeof import('virtual:vite-icons/carbon/dicom-overlay')['default']
     CarbonLanguage: typeof import('virtual:vite-icons/carbon/language')['default']
     CarbonMoon: typeof import('virtual:vite-icons/carbon/moon')['default']
     CarbonSun: typeof import('virtual:vite-icons/carbon/sun')['default']
-    CarbonWarning: typeof import('virtual:vite-icons/carbon/warning')['default']
-    Footer: typeof import('./src/components/Footer.vue')['default']
     GAppLayout: typeof import('./src/components/GComponents/GAppLayout.vue')['default']
     GBrandedLogo: typeof import('./src/components/GComponents/GBrandedLogo.vue')['default']
     GCard: typeof import('./src/components/GComponents/GCard.vue')['default']
-    GCharacter: typeof import('./src/components/GComponents/GCharacter.vue')['default']
     GEmpty: typeof import('./src/components/GComponents/GEmpty.vue')['default']
     GImage: typeof import('./src/components/GComponents/GImage.vue')['default']
     GLogo: typeof import('./src/components/GComponents/GLogo.vue')['default']
     GPlayer: typeof import('./src/components/GComponents/GPlayer.vue')['default']
     LayoutHeader: typeof import('./src/components/Layout/LayoutHeader.vue')['default']
     LayoutMenu: typeof import('./src/components/Layout/LayoutMenu.vue')['default']
-    Menu: typeof import('./src/components/Layout/Menu.vue')['default']
     PlaylistCard: typeof import('./src/components/Playlist/PlaylistCard.vue')['default']
     PlaylistList: typeof import('./src/components/Playlist/PlaylistList.vue')['default']
-    README: typeof import('./src/components/README.md')['default']
   }
 }
 
