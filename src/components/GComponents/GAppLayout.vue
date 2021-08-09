@@ -276,8 +276,10 @@ export default {
 
 <style>
 ::-webkit-scrollbar {
-  width: 8px;
   background-color: transparent;
+  width: 0px;
+
+  @media screen and (min-width: 768px) { width: 8px; }
 }
 
 ::-webkit-scrollbar-thumb {
