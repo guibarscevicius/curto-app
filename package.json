@@ -5,7 +5,8 @@
     "dev": "vite --port 3333 --open",
     "build": "cross-env NODE_ENV=production vite-ssg build",
     "preview": "vite preview",
-    "preview-https": "serve dist"
+    "preview-https": "serve dist",
+    "test": "jest --watch"
   },
   "dependencies": {
     "@vueuse/core": "^5.2.0",
@@ -21,16 +22,22 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.7.0",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-typescript": "^7.15.0",
     "@iconify/json": "^1.1.380",
     "@intlify/vite-plugin-vue-i18n": "^2.3.2",
+    "@testing-library/vue": "^5.8.2",
     "@types/nprogress": "^0.2.0",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@vitejs/plugin-vue": "^1.2.5",
     "@vue/compiler-sfc": "^3.1.5",
     "@vue/server-renderer": "^3.1.5",
+    "babel-jest": "^27.0.6",
     "cross-env": "^7.0.3",
     "eslint": "^7.31.0",
     "https-localhost": "^4.6.5",
+    "jest": "^27.0.6",
     "markdown-it-link-attributes": "^3.0.0",
     "markdown-it-prism": "^2.1.8",
     "pnpm": "^6.11.0",
@@ -44,6 +51,7 @@
     "vite-plugin-vue-layouts": "^0.3.1",
     "vite-plugin-windicss": "^1.2.5",
     "vite-ssg": "^0.12.0",
+    "vue-jest": "^3.0.7",
     "vue-tsc": "^0.2.2"
   }
 }
