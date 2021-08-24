@@ -16,22 +16,16 @@ export default defineConfig({
     },
   },
   plugins: [
-    Vue({
-      include: [/\.vue$/, /\.md$/],
-    }),
+    Vue(),
 
     // https://github.com/hannoeru/vite-plugin-pages
-    Pages({
-      extensions: ['vue', 'md'],
-    }),
+    Pages(),
 
     // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
     Layouts(),
 
     // https://github.com/antfu/vite-plugin-components
     ViteComponents({
-      extensions: ['vue'],
-
       // generate `components.d.ts` for ts support with Volar
       globalComponentsDeclaration: true,
 
