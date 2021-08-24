@@ -1,4 +1,5 @@
 import { reactive, toRefs } from 'vue'
+import request from '~/modules/request'
 
 const state = reactive({
   list: [],
@@ -7,6 +8,13 @@ const state = reactive({
 })
 
 export default function useArticles() {
+  const fetchArticles = async () => {
+    const [err, articles] = await request('/articles')
+    if (err) return
+
+    state.list = articles
+  }
+
   const addSelected = (id) => {
     state.selected = [...new Set([...state.selected, id])]
   }
@@ -20,6 +28,7 @@ export default function useArticles() {
 
   return {
     ...toRefs(state),
+    fetchArticles,
     addSelected,
     removeSelected,
     listSelected,
