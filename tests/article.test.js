@@ -1,4 +1,4 @@
-import useArticle from '../src/modules/articles'
+import useArticle from '../src/modules/article'
 
 const listMock = [
   { _id: '1', title: 'Article number one' },
