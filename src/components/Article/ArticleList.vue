@@ -3,7 +3,7 @@
     <article-card
       v-for="article in articles"
       :key="article._id"
-      :image="(i % 3) ? `https://picsum.photos/${Math.floor(Math.random() * 4) + 1}00/${Math.floor(Math.random() * 4) + 1}00` : undefined"
+      :image="article.media"
       logo="https://i.pinimg.com/originals/a0/db/2f/a0db2ff946b49086a105a2722db66d22.png"
       brand="The Guardian"
       :title="article.title"
