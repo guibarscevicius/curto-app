@@ -3,6 +3,7 @@
     class="
       flex flex-row flex-nowrap
       text-xs md:text-sm
+      cursor-pointer
     "
   >
     <!--image-->

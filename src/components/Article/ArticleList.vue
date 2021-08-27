@@ -1,13 +1,14 @@
 <template>
   <div class="article-list grid gap-2">
     <article-card
-      v-for="article in articles"
-      :key="article._id"
-      :image="article.media"
+      v-for="({ _id, media, title, description }) in article.list.value"
+      :key="_id"
+      :image="media"
       logo="https://i.pinimg.com/originals/a0/db/2f/a0db2ff946b49086a105a2722db66d22.png"
       brand="The Guardian"
-      :title="article.title"
-      :description="article.description"
+      :title="title"
+      :description="description"
+      @click="article.addSelected(_id)"
     />
   </div>
 </template>
@@ -20,11 +21,12 @@ import useArticle from '~/modules/article'
 export default {
   setup() {
     const article = useArticle()
+
     onBeforeMount(() => {
       article.fetchArticles()
     })
 
-    return { articles: article.list }
+    return { article }
   },
 }
 </script>
