@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full h-full">
+  <div class="flex flex-col w-full h-full space-y-2">
     <g-empty v-if="!article.selected.value.length">
       <p class="text-xl font-semibold">
         Ouch...
