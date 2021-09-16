@@ -39,10 +39,12 @@
           <div class="relative w-full h-full">
             <router-view v-slot="{ Component }">
               <transition name="fade">
-                <component
-                  :is="Component"
-                  class="absolute top-0 left-0 pb-4 w-full"
-                />
+                <keep-alive>
+                  <component
+                    :is="Component"
+                    class="absolute top-0 left-0 pb-4 w-full"
+                  />
+                </keep-alive>
               </transition>
             </router-view>
           </div>
