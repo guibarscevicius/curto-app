@@ -9,7 +9,7 @@ const state = reactive({
 
 export default function useArticles() {
   const fetchArticles = async () => {
-    const [err, articles] = await request('/articles')
+    const [err, articles] = await request.get('/article/list')
     if (err) return
 
     state.list = articles
