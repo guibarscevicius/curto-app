@@ -2,13 +2,13 @@
   <div class="flex flex-row flex-nowrap justify-between">
     <div>information</div>
     <div class="flex-shrink-0 flex flex-row flex-nowrap space-x-4 items-center">
-      <template v-for="controller in controllers" :key="controller.component">
+      <template v-for="{ component, size, onClick } in controllers" :key="component">
         <component
           class="p-1 cursor-pointer"
-          :is="controller.component"
-          :height="controller.size || '2.2em'"
-          :width="controller.size || '2.2em'"
-          @click="controller.onClick"
+          :is="component"
+          :height="size || '2.6em'"
+          :width="size || '2.6em'"
+          @click="onClick"
         />
       </template>
     </div>
