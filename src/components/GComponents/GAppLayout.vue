@@ -115,7 +115,7 @@
         v-if="slots.additional"
         ref="additional"
         class="md:absolute md:bottom-0 md:left-0 w-full
-          px-2 py-4
+          px-4 py-4
           bg-gray-100 dark:bg-gray-800
           border-b-2 md:border-b-0 md:border-t-2 border-gray-300 dark:border-gray-700"
       >

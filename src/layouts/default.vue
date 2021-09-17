@@ -15,7 +15,7 @@
     </template>
 
     <template #additional>
-      <g-player />
+      <playlist-player />
     </template>
   </g-app-layout>
 </template>

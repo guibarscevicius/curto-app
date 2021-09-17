@@ -8,6 +8,11 @@ declare module 'vue' {
     CarbonLanguage: typeof import('virtual:vite-icons/carbon/language')['default']
     CarbonMoon: typeof import('virtual:vite-icons/carbon/moon')['default']
     CarbonSun: typeof import('virtual:vite-icons/carbon/sun')['default']
+    CilMediaPlay: typeof import('virtual:vite-icons/cil/media-play')['default']
+    FluentNext24Regular: typeof import('virtual:vite-icons/fluent/next24-regular')['default']
+    FluentPause24Regular: typeof import('virtual:vite-icons/fluent/pause24-regular')['default']
+    FluentPlay24Regular: typeof import('virtual:vite-icons/fluent/play24-regular')['default']
+    FluentPrevious24Regular: typeof import('virtual:vite-icons/fluent/previous24-regular')['default']
     GAppLayout: typeof import('./src/components/GComponents/GAppLayout.vue')['default']
     GBrandedLogo: typeof import('./src/components/GComponents/GBrandedLogo.vue')['default']
     GCard: typeof import('./src/components/GComponents/GCard.vue')['default']
@@ -15,10 +20,15 @@ declare module 'vue' {
     GImage: typeof import('./src/components/GComponents/GImage.vue')['default']
     GLogo: typeof import('./src/components/GComponents/GLogo.vue')['default']
     GPlayer: typeof import('./src/components/GComponents/GPlayer.vue')['default']
+    JamPause: typeof import('virtual:vite-icons/jam/pause')['default']
+    JamPlay: typeof import('virtual:vite-icons/jam/play')['default']
     LayoutHeader: typeof import('./src/components/Layout/LayoutHeader.vue')['default']
     LayoutMenu: typeof import('./src/components/Layout/LayoutMenu.vue')['default']
+    PhPause: typeof import('virtual:vite-icons/ph/pause')['default']
+    PhPlay: typeof import('virtual:vite-icons/ph/play')['default']
     PlaylistCard: typeof import('./src/components/Playlist/PlaylistCard.vue')['default']
     PlaylistList: typeof import('./src/components/Playlist/PlaylistList.vue')['default']
+    PlaylistPlayer: typeof import('./src/components/Playlist/PlaylistPlayer.vue')['default']
   }
 }
 
