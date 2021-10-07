@@ -1,3 +1,5 @@
-import { useMediaQuery } from '@vueuse/core'
+import { useBreakpoints, breakpointsTailwind } from '@vueuse/core'
 
-export const isMobile = useMediaQuery('(max-width: 767px)')
+const breakpoints = useBreakpoints(breakpointsTailwind)
+
+export const isMobile = breakpoints.smaller('md')
