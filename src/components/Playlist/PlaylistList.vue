@@ -8,6 +8,7 @@
         Você ainda não adicionou itens à sua lista!<br />
         Clique em algum dos artigos para continuar
       </p>
+      <p v-if="isMobile">Batata</p>
     </g-empty>
 
     <template v-else>
@@ -27,12 +28,13 @@
 
 <script>
 import useArticle from '~/modules/article'
+import { isMobile } from '~/logic/responsive'
 
 export default {
   setup() {
     const article = useArticle()
 
-    return { article }
+    return { article, isMobile }
   },
 }
 </script>
