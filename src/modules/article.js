@@ -20,12 +20,12 @@ export default function useArticles() {
   const listArticles = () => state.list
     .map(article => ({
       ...article,
-      media: baseUrl + (article.media?.formats.thumbnail.url
+      media: baseUrl + (article.media?.formats?.thumbnail?.url
         || article.media?.url),
       source: {
         ...article.source,
-        logo: baseUrl + (article.source?.logo.formats.thumbnail.url
-          || article.source?.logo.url),
+        logo: baseUrl + (article.source?.logo?.formats?.thumbnail?.url
+          || article.source?.logo?.url),
       },
     }))
 
