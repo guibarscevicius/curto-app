@@ -1,13 +1,13 @@
 <template>
   <div class="flex flex-row flex-nowrap justify-between">
-    <div>information</div>
-    <div class="flex-shrink-0 flex flex-row flex-nowrap space-x-4 items-center">
+    <div class="flex-grow-1">information</div>
+    <div class="flex flex-row flex-nowrap space-x-0.5 items-center">
       <template v-for="{ component, size, onClick } in controllers" :key="component">
         <component
-          class="p-1 cursor-pointer"
           :is="component"
-          :height="size || '2.6em'"
-          :width="size || '2.6em'"
+          class="p-1 cursor-pointer"
+          :height="size || '2.2em'"
+          :width="size || '2.2em'"
           @click="onClick"
         />
       </template>
@@ -49,6 +49,7 @@ export default {
         component: PreviousIcon,
         disabled: !props.hasPrevious,
         onClick: () => props.hasPrevious && emit('previous'),
+        size: '1.6em',
       },
       props.isPlaying
         ? {
@@ -64,6 +65,7 @@ export default {
         component: NextIcon,
         disabled: !props.hasNext,
         onClick: () => props.hasNext && emit('next'),
+        size: '1.6em',
       },
     ])
 
