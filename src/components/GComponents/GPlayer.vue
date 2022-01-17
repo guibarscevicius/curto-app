@@ -1,6 +1,17 @@
 <template>
-  <div class="flex flex-row flex-nowrap justify-between">
-    <div class="flex-grow-1">information</div>
+  <div class="flex flex-col flex-nowrap justify-between">
+    <div class="flex-grow-1">
+      <p>{{ trackName }}</p>
+      <p>{{ sourceName }}</p>
+    </div>
+
+    <GAudio
+      ref="audio"
+      v-bind="attrs"
+      :source="source"
+      :type="type"
+    />
+
     <div class="flex flex-row flex-nowrap space-x-0.5 items-center">
       <template v-for="{ component, size, onClick } in controllers" :key="component">
         <component
@@ -16,7 +27,7 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 import PreviousIcon from 'virtual:vite-icons/fluent/previous-24-regular'
 import NextIcon from 'virtual:vite-icons/fluent/next-24-regular'
@@ -25,6 +36,14 @@ import PauseIcon from 'virtual:vite-icons/fluent/pause-24-regular'
 
 export default {
   props: {
+    source: {
+      type: String,
+      default: '',
+    },
+    type: {
+      type: String,
+      default: 'audio/mp3',
+    },
     isPlaying: {
       type: Boolean,
       default: false,
@@ -41,9 +60,31 @@ export default {
       type: Boolean,
       default: false,
     },
+    trackName: {
+      type: String,
+      default: '',
+    },
+    sourceName: {
+      type: String,
+      default: '',
+    },
   },
 
-  setup (props, { emit }) {
+  emits: ['previous', 'pause', 'play', 'next'],
+
+  setup(props, { emit, attrs }) {
+    const audio = ref(null)
+
+    const play = () => {
+      props.canPlay && emit('play')
+      audio.value.play()
+    }
+
+    const pause = () => {
+      emit('pause')
+      audio.value.pause()
+    }
+
     const controllers = computed(() => [
       {
         component: PreviousIcon,
@@ -53,13 +94,13 @@ export default {
       },
       props.isPlaying
         ? {
-          component: PlayIcon,
-          active: props.canPlay,
-          onClick: () => props.canPlay && emit('play'),
+          component: PauseIcon,
+          onClick: pause,
         }
         : {
-          component: PauseIcon,
-          onClick: () => emit('pause'),
+          component: PlayIcon,
+          active: props.canPlay,
+          onClick: play,
         },
       {
         component: NextIcon,
@@ -69,7 +110,7 @@ export default {
       },
     ])
 
-    return { ...props, controllers }
+    return { ...props, controllers, attrs, audio }
   },
 }
 </script>

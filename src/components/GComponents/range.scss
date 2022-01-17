@@ -1,0 +1,122 @@
+.g-range {
+  --buffered-width: 0%;
+  --seek-before-width: 0%;
+
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: linear-gradient(
+      to right,
+      rgba(209, 213, 219, 0.6) var(--buffered-width),
+      rgba(209, 213, 219, 0.2) var(--buffered-width)
+    );
+
+    @media screen and (prefers-color-scheme: dark) {
+      background: linear-gradient(
+        to right,
+        rgba(229, 231, 235, 0.6) var(--buffered-width),
+        rgba(229, 231, 235, 0.2) var(--buffered-width)
+      );
+    }
+  }
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 8px;
+    left: 0;
+    width: var(--seek-before-width);
+    height: 5px;
+    background-color: currentColor;
+    cursor: pointer;
+  }
+
+  &::-webkit-slider-thumb {
+    position: relative;
+    -webkit-appearance: none;
+    box-sizing: content-box;
+    border: 1px solid currentColor;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    margin: -7px 0 0 0;
+
+    &:active {
+      transform: scale(1.2);
+      background: currentColor;
+    }
+  }
+
+  &::-moz-range-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: linear-gradient(
+      to right,
+      rgba(var(--main-color-rgb), 0.6) var(--buffered-width),
+      rgba(var(--main-color-rgb), 0.2) var(--buffered-width)
+    );
+  }
+
+  &::-moz-range-progress {
+    background-color: currentColor;
+  }
+
+  &::-moz-focus-outer {
+    border: 0;
+  }
+
+  &::-moz-range-thumb {
+    box-sizing: content-box;
+    border: 1px solid currentColor;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(1.2);
+      background: currentColor;
+    }
+  }
+
+  &::-ms-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: transparent;
+    border: solid transparent;
+    color: transparent;
+  }
+
+  &::-ms-fill-lower {
+    background-color: currentColor;
+  }
+
+  &::-ms-fill-upper {
+    background: linear-gradient(
+      to right,
+      rgba(var(--main-color-rgb), 0.6) var(--buffered-width),
+      rgba(var(--main-color-rgb), 0.2) var(--buffered-width)
+    );
+  }
+
+  &::-ms-thumb {
+    box-sizing: content-box;
+    border: 1px solid currentColor;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(1.2);
+      background: currentColor;
+    }
+  }
+}

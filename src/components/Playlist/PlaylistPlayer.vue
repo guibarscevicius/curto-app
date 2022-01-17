@@ -4,6 +4,7 @@
     :can-play="canPlay"
     :has-previous="hasPrevious"
     :has-next="hasNext"
+    source="http://localhost:1337/articles/61703c3a8c6f791b9ce4ca30"
     @play="play"
     @pause="pause"
     @next="next"
