@@ -12,8 +12,6 @@
       :type="type"
     />
 
-    {{ source }}
-
     <div class="flex flex-row flex-nowrap space-x-0.5 items-center">
       <template v-for="{ component, size, onClick } in controllers" :key="component">
         <component
