@@ -32,7 +32,7 @@ export default {
     },
   },
 
-  setup(props) {
+  setup (props) {
     const root = ref(null)
 
     function onInput() {

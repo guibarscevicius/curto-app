@@ -2,39 +2,35 @@
   <g-player
     :is-playing="isPlaying"
     :can-play="canPlay"
-    :has-previous="hasPrevious"
-    :has-next="hasNext"
-    source="http://localhost:1337/articles/61703c3a8c6f791b9ce4ca30"
+    :has-previous="article.hasPrevious()"
+    :has-next="article.hasNext()"
+    :source="article.getActive().audioUrl"
     @play="play"
     @pause="pause"
-    @next="next"
-    @previous="previous"
+    @next="article.next"
+    @previous="article.previous"
   />
 </template>
 
 <script>
 import { ref } from 'vue'
+import useArticle from '~/modules/article'
 
 export default {
   setup () {
+    const article = useArticle()
+
     const isPlaying = ref(false)
-    const hasPrevious = ref(false)
-    const hasNext = ref(false)
     const canPlay = ref(true)
 
     const play = () => { isPlaying.value = !isPlaying.value }
     const pause = () => { isPlaying.value = !isPlaying.value }
-    const previous = () => { console.log('previous') }
-    const next = () => { console.log('next') }
 
     return {
+      article,
       isPlaying,
       play,
       pause,
-      previous,
-      next,
-      hasPrevious,
-      hasNext,
       canPlay,
     }
   },

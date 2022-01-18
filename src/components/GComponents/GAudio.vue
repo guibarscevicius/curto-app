@@ -1,6 +1,7 @@
 <template>
   <div class="block">
     <audio
+      :key="source"
       ref="audio"
       class="hidden"
       controls
