@@ -15,15 +15,38 @@ export default function useArticles () {
     const [err, articles] = await request.get('/articles')
     if (err) return
 
-    articles.forEach(({ id, ...article }) => {
-      state.entries.set(id, article)
+    articles.forEach(({
+      id,
+      createdAt,
+      locale,
+      media: {
+        caption,
+        formats: { thumbnail: { url: image } }
+      },
+      source: {
+        name: source,
+        logo: { formats: { thumbnail: { url: logo } } }
+      },
+      title,
+      url,
+    }) => {
+      state.entries.set(id, {
+        createdAt,
+        locale,
+        caption,
+        image,
+        source,
+        logo,
+        title,
+        url,
+      })
     })
 
     state.list = articles.map(({ id }) => id)
   }
 
   const listArticles = () => state.list
-    .map(id => state.entries.get(id))
+    .map(id => ({ id, ...state.entries.get(id) }))
 
   const addSelected = (id) => {
     state.selected = [...new Set([...state.selected, id])]

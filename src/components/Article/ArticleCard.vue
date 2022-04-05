@@ -14,7 +14,7 @@
         : ['text-gray-300 dark:text-gray-700']
       "
       :src="image || logo"
-      :alt="alt || title"
+      :alt="caption || title"
     />
 
     <!--content-->
@@ -23,12 +23,9 @@
         <h3 class="font-semibold line-clamp-2 mb-0.5">
           {{ title }}
         </h3>
-        <p class="line-clamp-2">
-          {{ description }}
-        </p>
       </div>
 
-      <span class="block text-xs font-light text-right">The Guardian - 12 jul 18h55</span>
+      <span class="block text-xs font-light text-right">{{ footer }}</span>
     </div>
 
     <!--actions-->
@@ -39,22 +36,17 @@
 <script>
 export default {
   props: {
+    caption: {
+      type: String,
+      default: '',
+    },
+
+    createdAt: {
+      type: String,
+      default: '',
+    },
+
     image: {
-      type: String,
-      default: '',
-    },
-
-    alt: {
-      type: String,
-      default: '',
-    },
-
-    title: {
-      type: String,
-      default: '',
-    },
-
-    description: {
       type: String,
       default: '',
     },
@@ -64,14 +56,23 @@ export default {
       default: '',
     },
 
-    brand: {
+    source: {
+      type: String,
+      default: '',
+    },
+
+    title: {
       type: String,
       default: '',
     },
   },
 
-  setup(props, { attrs: { active } }) {
-    return { ...props, active }
+  setup (props, { attrs: { active } }) {
+    const footer = props.source
+      ? `${props.source} - ${props.createdAt}`
+      : props.createdAt
+
+    return { ...props, footer, active }
   },
 }
 </script>
