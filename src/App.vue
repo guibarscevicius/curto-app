@@ -19,5 +19,5 @@ if (
 </script>
 
 <template>
-  <router-view />
+  <router-view class="select-none" />
 </template>
