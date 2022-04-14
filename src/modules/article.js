@@ -21,11 +21,11 @@ export default function useArticles () {
       locale,
       media: {
         caption,
-        formats: { thumbnail: { url: image } }
-      },
+        formats: { thumbnail: { url: image } = {} } = {},
+      } = {},
       source: {
         name: source,
-        logo: { formats: { thumbnail: { url: logo } } }
+        logo: { formats: { thumbnail: { url: logo } } },
       },
       title,
       url,
