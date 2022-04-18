@@ -81,7 +81,7 @@ export default function useArticles () {
     const id = state.selected[state.active]
 
     return {
-      ...state.entries[id],
+      ...state.entries.get(id),
       audioUrl: baseUrl + '/articles/' + id,
     }
   }
