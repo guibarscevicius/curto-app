@@ -5,6 +5,8 @@
     :has-previous="article.hasPrevious()"
     :has-next="article.hasNext()"
     :source="article.getActive().audioUrl"
+    :track-name="article.getActive().title"
+    :source-name="article.getActive().source"
     @play="play"
     @pause="pause"
     @next="article.next"
