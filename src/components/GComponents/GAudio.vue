@@ -34,8 +34,7 @@
 <script>
 import { ref, computed } from 'vue'
 
-
-function secondToTime(d = 0) {
+function secondToTime (d = 0) {
   const formatNumber = n => n < 10 ? '0' + n : n
 
   const hours = Math.floor(d / 3600)
@@ -61,7 +60,9 @@ export default {
     },
   },
 
-  setup(props, { attrs, emit }) {
+  emits: ['error'],
+
+  setup (props, { attrs, emit }) {
     const audio = ref(null)
 
     const currentTime = ref(0)
@@ -75,45 +76,44 @@ export default {
     const currentProgress = computed(() => secondToTime(currentTime.value))
     const progress = computed(() => (100 * currentTime.value / totalTime.value) || 0)
 
-    function play() {
+    function play () {
       audio.value.play()
       isPaused.value = false
     }
 
-    function pause() {
+    function pause () {
       audio.value.pause()
       isPaused.value = true
     }
 
-    function startLoading() {
+    function startLoading () {
       localLoading.value = true
       disabled.value = false
     }
 
-    function finishLoading({ target: { duration } = {} }) {
+    function finishLoading ({ target: { duration } = {} }) {
       localLoading.value = false
       disabled.value = false
       totalTime.value = duration
     }
 
-    function updateProgress({ target: { currentTime: c } = {} }) {
+    function updateProgress ({ target: { currentTime: c } = {} }) {
       currentTime.value = c
       updateBuffer()
     }
 
-    function updateBuffer() {
+    function updateBuffer () {
       if (!audio.value.buffered.length) return
 
       buffer.value = audio.value.buffered
         .end(audio.value.buffered.length - 1) * 100 / (totalTime.value || 1)
     }
 
-    function browse({ target: { value } = {} }) {
-      audio
-      audio.value.currentTime = totalTime.value  * value * .01
+    function browse ({ target: { value } = {} }) {
+      audio.value.currentTime = totalTime.value * value / 100
     }
 
-    function handleError() {
+    function handleError () {
       disabled.value = true
       localLoading.value = false
       emit('error')
