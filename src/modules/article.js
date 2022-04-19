@@ -64,7 +64,7 @@ export default function useArticles () {
   }
 
   function listSelected () {
-    return state.selected.map(id => state.entries.get(id))
+    return state.selected.map(id => ({ id, ...state.entries.get(id) }))
   }
 
   function hasNext () {
