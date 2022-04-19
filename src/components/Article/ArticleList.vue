@@ -35,8 +35,6 @@ export default {
 
 <style lang="scss">
 .article-list {
-  @media screen and (min-width: 1024px) {
-    grid-template-columns: repeat(auto-fill, minmax(32rem,1fr));
-  }
+  grid-template-columns: repeat(auto-fill, minmax(15rem,1fr));
 }
 </style>
