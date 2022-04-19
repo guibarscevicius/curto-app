@@ -8,7 +8,7 @@
   >
     <!--image-->
     <g-image
-      class="w-26 h-26 md:h-32 md:w-32"
+      class="w-20 h-20"
       :class="active
         ? ['text-green-100 dark:text-green-900']
         : ['text-gray-300 dark:text-gray-700']
@@ -28,7 +28,7 @@
         </p>
       </div>
 
-      <span class="block text-xs font-light text-right">The Guardian - 12 jul 18h55</span>
+      <span class="block text-xs font-light text-right">{{ source }}</span>
     </div>
 
     <!--actions-->
@@ -49,6 +49,11 @@ export default {
       default: '',
     },
 
+    createdAt: {
+      type: String,
+      default: '',
+    },
+
     title: {
       type: String,
       default: '',
@@ -64,13 +69,13 @@ export default {
       default: '',
     },
 
-    brand: {
+    source: {
       type: String,
       default: '',
     },
   },
 
-  setup(props, { attrs: { active } }) {
+  setup (props, { attrs: { active } }) {
     return { ...props, active }
   },
 }

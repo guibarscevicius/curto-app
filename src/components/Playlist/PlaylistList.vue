@@ -13,14 +13,16 @@
 
     <template v-else>
       <playlist-card
-        v-for="({ _id, title, description, media }) in article.listSelected()"
-        :key="_id"
-        :image="media"
-        logo="https://i.pinimg.com/originals/a0/db/2f/a0db2ff946b49086a105a2722db66d22.png"
-        brand="The Guardian"
+        v-for="({ id, caption, createdAt, image, logo, source, title })
+          in article.listSelected()"
+        :key="id"
+        :caption="caption"
+        :created-at="createdAt"
+        :image="image"
+        :logo="logo"
+        :source="source"
         :title="title"
-        :description="description"
-        @click="article.removeSelected(_id)"
+        @click="article.removeSelected(id)"
       />
     </template>
   </div>
