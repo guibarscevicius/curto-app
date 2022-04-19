@@ -1,8 +1,12 @@
 <template>
   <div class="flex flex-col flex-nowrap justify-between">
     <div class="flex-grow-1">
-      <p>{{ trackName }}</p>
-      <p>{{ sourceName }}</p>
+      <p class="line-clamp-1">
+        {{ trackName }}
+      </p>
+      <p class="line-clamp-1">
+        {{ sourceName }}
+      </p>
     </div>
 
     <GAudio
