@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col flex-nowrap justify-between">
-    <div class="flex-grow-1">
-      <p class="line-clamp-1">
+  <div class="flex flex-col flex-nowrap justify-between text-xs">
+    <div class="flex-grow-1 pb-2">
+      <p class="line-clamp-1 font-bold">
         {{ trackName }}
       </p>
       <p class="line-clamp-1">
@@ -16,13 +16,13 @@
       :type="type"
     />
 
-    <div class="flex flex-row flex-nowrap space-x-0.5 items-center">
+    <div class="flex flex-row flex-nowrap space-x-0.5 items-center justify-center text-base">
       <template v-for="{ component, size, onClick } in controllers" :key="component">
         <component
           :is="component"
           class="p-1 cursor-pointer"
-          :height="size || '2.2em'"
-          :width="size || '2.2em'"
+          :height="size || '2.4em'"
+          :width="size || '2.4em'"
           @click="onClick"
         />
       </template>
@@ -93,7 +93,12 @@ export default {
       {
         component: PreviousIcon,
         disabled: !props.hasPrevious,
-        onClick: () => props.hasPrevious && emit('previous'),
+        onClick: () => {
+          if (props.hasPrevious) {
+            pause()
+            emit('previous')
+          }
+        },
         size: '1.6em',
       },
       props.isPlaying
@@ -109,7 +114,12 @@ export default {
       {
         component: NextIcon,
         disabled: !props.hasNext,
-        onClick: () => props.hasNext && emit('next'),
+        onClick: () => {
+          if (props.hasNext) {
+            pause()
+            emit('next')
+          }
+        },
         size: '1.6em',
       },
     ])
