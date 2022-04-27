@@ -7,7 +7,7 @@ module.exports = {
     function () {
       return {
         visitor: {
-          MetaProperty(path) {
+          MetaProperty (path) {
             path.replaceWithSourceString('process')
           },
         },
