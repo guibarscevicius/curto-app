@@ -1,11 +1,11 @@
 import useArticle from '../src/modules/article'
 
 const listMock = [
-  { _id: '1', title: 'Article number one' },
-  { _id: '2', title: 'Article number two' },
-  { _id: '3', title: 'Article number three' },
-  { _id: '4', title: 'Article number four' },
-  { _id: '5', title: 'Article number five' },
+  { id: '1' },
+  { id: '2' },
+  { id: '3' },
+  { id: '4' },
+  { id: '5' },
 ]
 
 const selectedMock = ['1', '4']
