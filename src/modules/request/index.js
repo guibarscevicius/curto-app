@@ -1,4 +1,5 @@
 import { createQuery } from './helpers'
+import * as Sentry from '@sentry/browser'
 
 const request = (endpoint = '', { body, ...config }) =>
   fetch(import.meta.env.VITE_API_URL + endpoint, {
@@ -8,7 +9,10 @@ const request = (endpoint = '', { body, ...config }) =>
   })
     .then(res => res && res.json())
     .then(data => [null, data || {}])
-    .catch(err => [err, null])
+    .catch(err => {
+      Sentry.captureException(err)
+      return [err, null]
+    })
 
 export default {
   get: (url, params) =>
