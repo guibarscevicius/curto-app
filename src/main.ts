@@ -6,6 +6,9 @@ import { setupLayouts } from 'virtual:generated-layouts'
 import App from './App.vue'
 import { isMobile } from '~/logic'
 
+import * as Sentry from "@sentry/vue";
+import { BrowserTracing } from "@sentry/tracing";
+
 // windicss layers
 import 'virtual:windi-base.css'
 import 'virtual:windi-components.css'
@@ -26,6 +29,21 @@ export const createApp = ViteSSG(
     scrollBehavior() { return { top: 0, behavior: 'smooth' } },
   },
   (ctx) => {
+    Sentry.init({
+      app: ctx.app,
+      dsn: "https://64a226437e144677ab2d29e372b9a1f4@o866182.ingest.sentry.io/6751677",
+      integrations: [
+        new BrowserTracing({
+          routingInstrumentation: Sentry.vueRouterInstrumentation(ctx.router),
+          tracingOrigins: ["curto.rocks", /^\//],
+        }),
+      ],
+      // Set tracesSampleRate to 1.0 to capture 100%
+      // of transactions for performance monitoring.
+      // We recommend adjusting this value in production
+      tracesSampleRate: 1.0,
+    })
+
     // install all modules under `modules/`
     Object.values(import.meta.globEager('./modules/*.ts')).map(i => i.install?.(ctx))
 
