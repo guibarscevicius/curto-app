@@ -8,6 +8,7 @@ declare module 'vue' {
     CarbonLanguage: typeof import('virtual:vite-icons/carbon/language')['default']
     CarbonMoon: typeof import('virtual:vite-icons/carbon/moon')['default']
     CarbonSun: typeof import('virtual:vite-icons/carbon/sun')['default']
+    CarbonWarning: typeof import('virtual:vite-icons/carbon/warning')['default']
     CilMediaPlay: typeof import('virtual:vite-icons/cil/media-play')['default']
     FluentNext24Regular: typeof import('virtual:vite-icons/fluent/next24-regular')['default']
     FluentPause24Regular: typeof import('virtual:vite-icons/fluent/pause24-regular')['default']
