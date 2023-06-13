@@ -6,8 +6,8 @@ import { setupLayouts } from 'virtual:generated-layouts'
 import App from './App.vue'
 import { isMobile } from '~/logic'
 
-import * as Sentry from "@sentry/vue";
-import { BrowserTracing } from "@sentry/tracing";
+import * as Sentry from "@sentry/vue"
+import { BrowserTracing } from "@sentry/tracing"
 
 // windicss layers
 import 'virtual:windi-base.css'
